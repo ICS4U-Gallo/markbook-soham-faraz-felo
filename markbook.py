@@ -61,6 +61,5 @@ def edit_student(student: Dict, **kwargs: Dict):
             data that needs to be changed. Can come in the form
             of a dictionary.
     """
-
-    
-    pass
+	student = {'first_name' : first_name, 'last_name' : last_name, 'grade' : grade}
+	return student
