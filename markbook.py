@@ -7,7 +7,7 @@ from typing import Dict
 
 def create_assignment(name: str, due: str, points: int) -> Dict:
     assignment = {"name": name, "due": due, "points": points}
-    return assignment	
+    return assignment
 
 
 def create_classroom(course_code: str, course_name: str, period: int, teacher: str) -> Dict:
@@ -40,18 +40,16 @@ def add_student_to_classroom(student: Dict, classroom: Dict):
     return student_list   
 
 def remove_student_from_classroom(student: Dict, classroom: Dict):
-    """Removes student from classroom
-  
-    Args:
-        student: The student to be removed
-        classroom: the class from which the student will be removed.
-  
-    """
+	"""Removes student from classroom
+
+	Args:
+		student: The student to be removed
+		classroom: the class from which the student will be removed.
+
+	"""
 	student_list = classroom.get('student_list')
 	student_list.pop(student)
 	return student_list
-
-    pass
 
 
 def edit_student(student: Dict, **kwargs: Dict):
