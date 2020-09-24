@@ -53,14 +53,14 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
 
 
 def edit_student(student: Dict, **kwargs: Dict):
-    
-    """Edits the student's info with the provided key/value pairs
-    Args:
-        student: The student whose data needs to be updated.
-        **kwargs: KeyWordARGumentS. The key/value pairs of the
-            data that needs to be changed. Can come in the form
-            of a dictionary.
-    """
+
+	"""Edits the student's info with the provided key/value pairs
+	Args:
+		student: The student whose data needs to be updated.
+		**kwargs: KeyWordARGumentS. The key/value pairs of the
+			data that needs to be changed. Can come in the form
+			of a dictionary.
+	"""
 	for key in kwargs.keys():
 		student[key] = kwargs[key]
 	return(student)
