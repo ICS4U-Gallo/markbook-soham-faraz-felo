@@ -1,40 +1,54 @@
-#felo
+# felo
 
-from markbook import create_assignment, create_classroom, calculate_average_mark, add_student_to_classroom, edit_student, remove_student_from_classroom
 import json
-prompt =  ('\n----WELCOME TO YOUR MARKBOOK----\n\n' + '1. Create a new assingment.\n'
-    +'2. Add a new class.\n' +'3. Calculate average mark.\n' + '4. Add student to classroom.\n'
-    +'5. Remove student from classroom.\n'+'6. Edit a student.\n' +'0. Exit.\n'
-    +'\nPlease enter the number that coressponds with what you would like to do: ')
+from markbook import create_assignment, create_classroom,
+calculate_average_mark, add_student_to_classroom, edit_student,
+remove_student_from_classroom
+prompt = ('\n----WELCOME TO YOUR MARKBOOK----\n\n' +
+          '1. Create a new assingment.\n' +
+          '2. Add a new class.\n' + '3. Calculate average mark.\n' +
+          '4. Add student to classroom.\n' +
+          '5. Remove student from classroom.\n' +
+          '6. Edit a student.\n' + '0. Exit.\n' +
+          '\nPlease enter the number that is next to with what you would like to do: ')
+
 
 def clear_screen():
-    print('\n' *100)
+    print('\n' * 100)
+
+
 def copy():
     with open("markbook.json", 'r') as f:
         copy = json.loads(f.read())
-    
+
     return copy
+
+
 def overwrite(text):
     with open('markbook.json', 'w') as f:
         text = json.dumps(text, indent=4)
         f.write(text)
+
+
 def class_search(copy):
     classrooms = copy['classrooms']
     # prints all the classroom codes
     for idx, value in enumerate(classrooms):
         course_codes = value.get('course_code')
         print('\n', str(idx+1) + '.', course_codes)
-    #gets classroom index
-    classroom = int(input('\n0. Go back \n\n' 
-    + 'Which classroom are you searching for?: '))
-    classroom -= 1 
-    
+    # gets classroom index
+    classroom = int(input('\n0. Go back \n\n' +
+                          'Which classroom are you searching for?: '))
+    classroom -= 1
+
     if classroom == -1:
         return None
     # returns classroom dict
     return classrooms[classroom]
+
+
 def student_search(classroom):
-    #getting student list from classroom
+    # getting student list from classroom
     student_list = classroom['student_list']
     # if its empty
     if student_list == []:
@@ -45,23 +59,23 @@ def student_search(classroom):
         f_names = value.get('first_name')
         l_names = value.get('last_name')
         print('\n', str(idx) + '.', f_names, l_names,)
-    #grabbing the student index
+    # grabbing the student index
     student = int(input('\n'+'Which student are you looking for?: '))
-    #returns student dictionary
-    return student_list[student] 
+    # returns student dictionary
+    return student_list[student]
 
 while True:
     while True:
         try:
             page = int(input(prompt))
             break
-        except ValueError: 
+        except ValueError:
             print('\nPlease input an integer that coressponds to your choice')
-    
-    if page == 0: # exit
+
+    if page == 0:  # exit
         break
-        
-    elif page == 1: # add assignment
+
+    elif page == 1:  # add assignment
         clear_screen()
         print('---ADDING AN ASSIGNMNET---')
         # collecting inputs
@@ -76,19 +90,20 @@ while True:
         copy = copy()
         # getting classroom for assignment
         classroom = class_search(copy)
-        
-        if classroom == None:
+
+        if classroom is None:
             break
         # appending to assignments list
         assignment_list = classroom["assignment_list"]
         assignment_list.append(assignment)
-        print("Just created an assignment with the following details:\n\n", assignment)
+        print("Just created an assignment with the following details:\n\n",
+              assignment)
         print("Here are all the assignments\n\n", assignment_list)
         overwrite(copy)
 
         page = int(input(prompt))
-    
-    elif page == 2: # create a classroom
+
+    elif page == 2:  # create a classroom
         clear_screen()
         print('---CREATING A CLASSROOM---')
         while True:
@@ -101,7 +116,7 @@ while True:
                 period = int(input('period: '))
                 teacher = input('teacher: ')
                 break
-            
+
             except ValueError:
                 print('Please input an integer for the period')
 
@@ -109,39 +124,40 @@ while True:
         # append classroom to the classrooms list
         classrooms = copy["classrooms"]
         classrooms.append(classroom)
-        
+
         overwrite(copy)
         print("Just created a classroom with the following details:")
         print(classrooms[-1])
 
         page = int(input(prompt))
-    
-    elif page == 3: # calculate student average
+
+    elif page == 3:  # calculate student average
         clear_screen()
         print('---CALCULATE STUDENT AVERAGE---')
         copy = copy()
         classroom = class_search(copy)
 
-        if classroom == None:
+        if classroom is None:
             break
-        
+
         student = student_search(classroom)
 
         average = calculate_average_mark(student)
-        
-        print(student.get('first_name'), student.get('last_name'), 'Average:', average, '%')
+
+        print(student.get('first_name'), student.get('last_name'),
+              'Average:', average, '%')
 
         page = int(input(prompt))
-    
-    elif page == 4: # add student
+
+    elif page == 4:  # add student
         clear_screen()
         print('---ADD A STUDENT---')
         copy = copy()
         classroom = class_search(copy)
 
-        if classroom == None:
+        if classroom is None:
             break
-        
+
         # collecting inputs
         student_fname = input("The student's first name: ")
         student_lname = input("The student's last name: ")
@@ -149,68 +165,74 @@ while True:
         student_number = int(input("The student's student number: "))
         gender = input("The student's gender: ")
         email = input("The student's email: ")
-        
+
         # collect marks
-        marks = input("The student's marks sperated by comma + space, ex. '100, 95, 90': ")
+        marks = input("The student's marks sperated by
+                      comma + space, ex. '100, 95, 90': ")
         marks = marks.split(', ')
-        
+
         # marks to int list
-        for i in range(0, len (marks)):
+        for i in range(0, len(marks)):
             marks[i] = int(marks[i])
-        
+
         # comments to str list
-        comments = input("student's comments  sperated by comma + space, ex. 'hi, yellow, red': ")
+        comments = input("student's comments  sperated by comma + space",
+                         "ex. 'hi, yellow, red': ")
         comments = comments.split(', ')
-        
-        #student info to dict
-        student = {"first_name":student_fname, "last_name":student_lname, 
-        "grade": grade, "student_number": student_number, "gender":gender, "email":email, "marks": marks, "comments":comments}
-        
-        #printing new student list 
+
+        # student info to dict
+        student = {"first_name": student_fname, "last_name": student_lname,
+                   "grade": grade, "student_number": student_number,
+                   "gender": gender, "email": email,
+                   "marks": marks, "comments": comments}
+
+        # printing new student list
         print(add_student_to_classroom(student, classroom))
         overwrite(copy)
-        
+
         page = int(input(prompt))
-    
-    elif page == 5: #remove student
+
+    elif page == 5:  # remove student
         clear_screen()
         print('---REMOVE A STUDENT---')
         copy = copy()
         classroom = class_search(copy)
 
-        if classroom == None:
-            break 
-        
-        #getting student
+        if classroom is None:
+            break
+
+        # getting student
         student = student_search(classroom)
         print(student)
         print('0 = False, 1 = True')
-        
-        #confriming student
-        confirm = int(input('Are you sure that you want to remove', student.get('first_name'), student.get('last_name'), 'from', classroom.get('Course_name')))
-        
-        #removing student
+
+        # confriming student
+        confirm = int(input('Are you sure that you want to remove',
+                            student.get('first_name'), student.get('last_name'),
+                            'from', classroom.get('Course_name')))
+
+        # removing student
         if confirm:
             remove_student_from_classroom(student, classroom)
-        
+
         else:
             break
         page = int(input(prompt))
 
-    elif page == 6: #edit a student WIP
+    elif page == 6:  # edit a student WIP
         clear_screen()
         print('---EDIT A STUDENT (WIP)---')
         copy = copy()
         classroom = class_search(copy)
-        if classroom == None:
-            break 
-        
+        if classroom is None:
+            break
+
         student = student_search(classroom)
 
         kwargs = input()
-        
+
         edit_student(student, kwargs)
-        
+
         page = int(input(prompt))
 
     else:
