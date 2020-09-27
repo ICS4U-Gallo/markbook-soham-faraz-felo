@@ -193,6 +193,7 @@ while True:
         #removing student
         if confirm == 1:
             remove_student_from_classroom(student, classroom)
+            overwrite(copy)
             break
         
         else:
