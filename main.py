@@ -161,7 +161,7 @@ while True:
             marks[i] = int(marks[i])
         
         # comments to str list
-        comments = input("student's comments  sperated by comma + space, ex. 'hi, yellow, red': ")
+        comments = input("Comments: ")
         comments = comments.split(', ')
         
         #student info to dict
