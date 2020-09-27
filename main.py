@@ -1,9 +1,7 @@
 # felo
 
 import json
-from markbook import create_assignment, create_classroom,
-calculate_average_mark, add_student_to_classroom, edit_student,
-remove_student_from_classroom
+from markbook import create_assignment, create_classroom, calculate_average_mark, add_student_to_classroom, edit_student, remove_student_from_classroom
 prompt = ('\n----WELCOME TO YOUR MARKBOOK----\n\n' +
           '1. Create a new assingment.\n' +
           '2. Add a new class.\n' + '3. Calculate average mark.\n' +
@@ -167,8 +165,7 @@ while True:
         email = input("The student's email: ")
 
         # collect marks
-        marks = input("The student's marks sperated by
-                      comma + space, ex. '100, 95, 90': ")
+        marks = input("The student's marks sperated by comma + space, ex. '100, 95, 90': ")
         marks = marks.split(', ')
 
         # marks to int list
