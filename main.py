@@ -207,8 +207,9 @@ while True:
             break 
         
         student = student_search(classroom)
-
-        kwargs = input()
+        print("Follow this format: first_name= 'Frank'")
+        kwargs = input("please input the students updated information")
+        print()
         
         edit_student(student, kwargs)
         break
