@@ -57,7 +57,9 @@ while True:
             print('\nPlease input an integer that coressponds to your choice')
     
     if page == 0: # exit
-        break
+        print('Goodbye')
+		break
+		
         
     elif page == 1: # add assignment
         clear_screen()
