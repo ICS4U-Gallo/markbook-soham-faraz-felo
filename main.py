@@ -83,8 +83,8 @@ while True:
         print("Just created an assignment with the following details:\n\n", assignment)
         print("Here are all the assignments\n\n", assignment_list)
         overwrite(copy)
+        break
 
-        page = int(input(prompt))
     
     elif page == 2: # create a classroom
         clear_screen()
@@ -92,7 +92,7 @@ while True:
         while True:
             try:
                 # collecting inputs
-                course_code = input("Please Input the name of the assignment or '0' to go back: ")
+                course_code = input("Please Input the name of the classroom or '0' to go back: ")
                 if course_code == '0':
                     break
                 course_name = input('course_name: ')
@@ -112,8 +112,8 @@ while True:
         overwrite(copy)
         print("Just created a classroom with the following details:")
         print(classrooms[-1])
+        break
 
-        page = int(input(prompt))
     
     elif page == 3: # calculate student average
         clear_screen()
@@ -126,11 +126,14 @@ while True:
         
         student = student_search(classroom)
 
-        average = calculate_average_mark(student)
-        
+        try:
+            average = calculate_average_mark(student)
+        except AttributeError:
+            print('That classroom has no students')
+            
         print(student.get('first_name'), student.get('last_name'), 'Average:', average, '%')
+        break
 
-        page = int(input(prompt))
     
     elif page == 4: # add student
         clear_screen()
@@ -168,9 +171,8 @@ while True:
         #printing new student list 
         print(add_student_to_classroom(student, classroom))
         overwrite(copy)
-        
-        page = int(input(prompt))
-    
+        break
+            
     elif page == 5: #remove student
         clear_screen()
         print('---REMOVE A STUDENT---')
@@ -191,10 +193,10 @@ while True:
         #removing student
         if confirm:
             remove_student_from_classroom(student, classroom)
+            break
         
         else:
             break
-        page = int(input(prompt))
 
     elif page == 6: #edit a student WIP
         clear_screen()
@@ -209,9 +211,9 @@ while True:
         kwargs = input()
         
         edit_student(student, kwargs)
+        break
         
-        page = int(input(prompt))
 
     else:
         print('\nPlease input an integer that coressponds to your choice')
-        page = int(input(prompt))
+    
