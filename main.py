@@ -1,9 +1,9 @@
 # Felo
 import json
 
-from markbook import create_assignment, create_classroom,
+from markbook import (create_assignment, create_classroom,
 calculate_average_mark, add_student_to_classroom, edit_student,
-remove_student_from_classroom
+remove_student_from_classroom)
 
 prompt = ('\n----WELCOME TO YOUR MARKBOOK----\n\n' +
           '1. Create a new assingment.\n' +
@@ -242,4 +242,4 @@ while True:
     else:
         print('\nPlease input an integer that coressponds to your choice')
 
-print("Goodbye")
+print("\nGoodbye")
