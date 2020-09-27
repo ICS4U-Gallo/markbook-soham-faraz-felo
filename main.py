@@ -58,7 +58,6 @@ while True:
             print('\nPlease input an integer that coressponds to your choice')
     
     if page == 0: # exit
-        print('Goodbye')
 		break
 		
         
@@ -221,3 +220,4 @@ while True:
     else:
         print('\nPlease input an integer that coressponds to your choice')
     
+print("Goodbye")
