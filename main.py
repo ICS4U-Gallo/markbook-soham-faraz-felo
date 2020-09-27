@@ -122,7 +122,7 @@ while True:
         classroom = class_search(copy)
 
         if classroom == None:
-            break
+            continue
         
         student = student_search(classroom)
 
@@ -188,7 +188,7 @@ while True:
         print('0 = False, 1 = True')
         
         #confriming student
-        confirm = int(input('Are you sure that you want to remove', student.get('first_name'), student.get('last_name'), 'from', classroom.get('Course_name')))
+        confirm = int(input('Are you sure that you want to remove ' + student.get('first_name') + ' ' + student.get('last_name') + ' from ' + classroom.get('course_name')))
         
         #removing student
         if confirm:
@@ -209,7 +209,6 @@ while True:
         student = student_search(classroom)
         print("Follow this format: first_name= 'Frank'")
         kwargs = input("please input the students updated information")
-        print()
         
         edit_student(student, kwargs)
         break
