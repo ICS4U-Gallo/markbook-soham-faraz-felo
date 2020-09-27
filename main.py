@@ -191,7 +191,7 @@ while True:
         confirm = int(input('Are you sure that you want to remove ' + student.get('first_name') + ' ' + student.get('last_name') + ' from ' + classroom.get('course_name')))
         
         #removing student
-        if confirm:
+        if confirm == 1:
             remove_student_from_classroom(student, classroom)
             break
         
