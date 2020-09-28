@@ -6,11 +6,11 @@ calculate_average_mark, add_student_to_classroom, edit_student,
 remove_student_from_classroom)
 
 prompt = ('\n----WELCOME TO YOUR MARKBOOK----\n\n' +
-          '1. Create a new assingment.\n' +
-          '2. Add a new class.\n' + '3. Calculate average mark.\n' +
+          '1. Create new assignment.\n' +
+          '2. Add new classroom.\n' + '3. Calculate average mark.\n' +
           '4. Add student to classroom.\n' +
           '5. Remove student from classroom.\n' +
-          '6. Edit a student.\n' + '0. Exit.\n' +
+          '6. Edit student info.\n' + '0. Exit.\n' +
           '\nPlease enter the number that coressponds' +
           ' with what you would like to do: ')
 
@@ -79,7 +79,7 @@ while True:
 
     elif page == 1:  # add assignment
         clear_screen()
-        print('---ADDING AN ASSIGNMNET---')
+        print('---ADDING AN ASSIGNMENT---')
         # collecting inputs
         name = input("Please Input the name of the" +
                      " assignment or '0' to go back: ")
